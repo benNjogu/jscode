@@ -1,7 +1,4 @@
-import { useRef } from 'react';
 import MonacoEditor, { OnChange, OnMount } from '@monaco-editor/react';
-import prettier from 'prettier';
-import parser from 'prettier/parser-babel';
 
 import './code-editor.style.css';
 
@@ -11,41 +8,17 @@ interface CodeEditorProps {
 }
 
 const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
-  const editorRef = useRef<any>();
-
   const handleOnMount: OnMount = (editor) => {
     editor.getModel()?.updateOptions({ tabSize: 2 });
   };
 
   const handleOnChange: OnChange = (value) => {
-    editorRef.current = value;
     onChange(value);
-  };
-
-  const handleFormat = () => {
-    console.log(editorRef.current);
-
-    //get current value from editor
-    const unformmated = editorRef.current;
-    // //format that value
-    const formatted = prettier
-      .format(unformmated, {
-        parser: 'babel',
-        plugins: [parser],
-        useTabs: false,
-        semi: true,
-        singleQuote: true,
-      })
-      .replace(/\n$/, '');
-    //set the formated value back in the editor
   };
 
   return (
     <div className="editor-wrapper">
-      <button
-        className="button button-format is-primary is-small"
-        onClick={handleFormat}
-      >
+      <button className="button button-format is-primary is-small">
         Format
       </button>
       <MonacoEditor
