@@ -1,9 +1,7 @@
 // @ts-nocheck
 import { useState, useEffect, useRef } from 'react';
-import * as esbuild from 'esbuild-wasm';
+import bundle from './bundler';
 
-import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
-import { fetchPlugin } from './plugins/fetch-plugin';
 import CodeEditor from './components/code-editor/code-editor.component';
 import Preview from './components/preview/preview.component';
 import './App.css';
@@ -11,40 +9,11 @@ import './App.css';
 const App = () => {
   const [code, setCode] = useState('');
   const [input, setInput] = useState('');
-  const ref = useRef<any>();
-
-  useEffect(() => {
-    startService();
-  }, []);
-
-  const startService = async () => {
-    ref.current = await esbuild.startService({
-      worker: true,
-      wasmURL: 'https://unpkg.com/esbuild-wasm@0.8.27/esbuild.wasm',
-    });
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setInput(e.target.value);
-  };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!ref.current) {
-      return;
-    }
+    const output = await bundle(input);
 
-    const result = await ref.current.build({
-      entryPoints: ['index.js'],
-      bundle: true,
-      write: false,
-      plugins: [unpkgPathPlugin(), fetchPlugin(input)],
-      define: {
-        'process.env.NODE_ENV': '"production"',
-        global: 'window',
-      },
-    });
-
-    setCode(result.outputFiles[0].text);
+    setCode(output);
   };
 
   return (

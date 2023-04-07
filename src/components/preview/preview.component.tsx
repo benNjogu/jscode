@@ -27,7 +27,7 @@ const html = `
 
 const Preview: React.FC<PreviewProps> = ({ code }) => {
   useEffect(() => {
-    iframeRef.current.srcdoc = html;
+    //iframeRef.current.srcdoc = html;
     iframeRef.current.contentWindow.postMessage(code, '*');
   }, [code]);
 
