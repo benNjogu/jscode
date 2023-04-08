@@ -1,30 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import bundle from '../../bundler';
 
 import CodeEditor from '../code-editor/code-editor.component';
 import Preview from '../preview/preview.component';
+import Resizable from '../resizable/resizable.component';
+
+import './code-cell.style.css';
 
 const CodeCell = () => {
   const [code, setCode] = useState('');
   const [input, setInput] = useState('');
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    const output = await bundle(input);
+  useEffect(() => {
+    const timer = setTimeout(async () => {
+      const output = await bundle(input);
 
-    setCode(output);
-  };
+      setCode(output);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [input]);
 
   return (
-    <div className="container">
-      <CodeEditor
-        onChange={(value: string) => setInput(value)}
-        initialValue="const sum = add(3, 4);"
-      />
-      <div>
-        <button onClick={handleSubmit}>Submit</button>
+    <Resizable direction="vertical">
+      <div className="container">
+        <Resizable direction="horizontal">
+          <CodeEditor
+            onChange={(value: string) => setInput(value)}
+            initialValue="const sum = add(3, 4);"
+          />
+        </Resizable>
+        <Preview code={code} />
       </div>
-      <Preview code={code} />
-    </div>
+    </Resizable>
   );
 };
 
