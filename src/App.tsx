@@ -1,10 +1,13 @@
-import './App.css';
 import CodeCell from './components/code-cell/code-cell.component';
+import TextEditor from './components/text-editor/text-editor.component';
+
+import './App.css';
 
 const App = () => {
   return (
     <div>
-      <CodeCell />
+      <TextEditor />
+      {/* <CodeCell /> */}
     </div>
   );
 };

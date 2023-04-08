@@ -1,0 +1,28 @@
+.w-md-editor .title {
+    line-height: unset !important;
+    font-size: unset !important;
+    font-weight: unset !important;
+}
+
+.text-editor .w-md-editor-bar svg {
+    display: none;
+}
+
+.markdown-wrapper {
+    cursor: pointer;
+}
+
+.markdown-container .wmde-markdown {
+    background-color: 37414b;
+}
+
+.text-editor .w-md-editor-bar {
+    height: 11px;
+    cursor: row-resize;
+    background-color: #37414b;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    width: 100%;
+    position: relative;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+}
