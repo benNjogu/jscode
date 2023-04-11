@@ -13,7 +13,7 @@
 }
 
 .markdown-container .wmde-markdown {
-    background-color: 37414b;
+    background-color: unset !important;
 }
 
 .text-editor .w-md-editor-bar {
