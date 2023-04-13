@@ -4,6 +4,7 @@ import { store } from './redux';
 
 import App from './App';
 
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bulmaswatch/superhero/bulmaswatch.min.css';
 import './index.css';
 
