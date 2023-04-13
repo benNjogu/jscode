@@ -1,5 +1,6 @@
 import { useActions } from '../../hooks/use-actions';
 import { CellTypes } from '../../redux';
+import CustomButton from '../custom-button/custom-button.component';
 import './add-cell.style.css';
 
 interface PropTypes {
@@ -17,24 +18,20 @@ const AddCell: React.FC<PropTypes> = ({ prevCellId, forceVisible }) => {
   return (
     <div className={`add-cell ${forceVisible && 'force-visible'}`}>
       <div className="add-buttons">
-        <button
-          className="button is-rounded is-primary is-small"
-          onClick={() => handleClick('code')}
-        >
-          <span className="icon is-small">
-            <i className="fas fa-plus" />
-          </span>
-          <span>Code</span>
-        </button>
-        <button
-          className="button is-rounded is-primary is-small"
-          onClick={() => handleClick('text')}
-        >
-          <span className="icon is-small">
-            <i className="fas fa-plus" />
-          </span>
-          <span>Text</span>
-        </button>
+        <CustomButton
+          style="is-rounded"
+          handleClick={() => handleClick('code')}
+          size="is-small"
+          type="fa-plus"
+          text="Code"
+        />
+        <CustomButton
+          style="is-rounded"
+          handleClick={() => handleClick('text')}
+          size="is-small"
+          type="fa-plus"
+          text="Text"
+        />
       </div>
       <div className="divider"></div>
     </div>
