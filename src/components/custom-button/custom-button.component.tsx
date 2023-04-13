@@ -1,5 +1,5 @@
 interface PropTypes {
-  handleClick: any;
+  handleClick: () => void;
   type: string;
 }
 
