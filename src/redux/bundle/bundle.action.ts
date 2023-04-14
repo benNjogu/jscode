@@ -1,1 +1,1 @@
-import './App.css';
+import './bundle.reducer';

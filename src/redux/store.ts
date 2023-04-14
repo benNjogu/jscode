@@ -2,9 +2,10 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './root-reducer';
 
-import { ActionType } from './action-types';
+import { bundlerMiddleware } from './middlewares/bundler-middleware';
+import { CellActionTypes } from './action-types';
 
-const middleWares = [thunk];
+const middleWares = [bundlerMiddleware, thunk];
 
 export const store = createStore(
   rootReducer,
@@ -13,7 +14,7 @@ export const store = createStore(
 );
 
 store.dispatch({
-  type: ActionType.INSERT_CELL_AFTER,
+  type: CellActionTypes.INSERT_CELL_AFTER,
   payload: {
     id: null,
     type: 'text',
@@ -21,7 +22,7 @@ store.dispatch({
 });
 
 store.dispatch({
-  type: ActionType.INSERT_CELL_AFTER,
+  type: CellActionTypes.INSERT_CELL_AFTER,
   payload: {
     id: null,
     type: 'code',
