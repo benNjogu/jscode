@@ -13,18 +13,3 @@ export const store = createStore(
   applyMiddleware(...middleWares)
 );
 
-store.dispatch({
-  type: CellActionTypes.INSERT_CELL_AFTER,
-  payload: {
-    id: null,
-    type: 'text',
-  },
-});
-
-store.dispatch({
-  type: CellActionTypes.INSERT_CELL_AFTER,
-  payload: {
-    id: null,
-    type: 'code',
-  },
-});
