@@ -1,4 +1,4 @@
-# JBook
+# JScode
 - A code editor and a documentation tool.
 
 Handling transpilation.
